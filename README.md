@@ -7,7 +7,7 @@ Your task is to implement a function called `promiseAll` that mimics the behav
 
 **Instructions**
 
-1. Implement a function called `promiseAll` that takes an array of promises as an argument.
+1. Implement a function called **`promiseAll`** that takes an array of promises as an argument.
 2. The function should return a new promise that resolves when all promises in the input array have resolved, and rejects if any of the promises reject.
 3. If all promises resolve, the resolved value of the returned promise should be an array containing the resolved values of the input promises, in the same order.
 4. If any promise rejects, the returned promise should reject with the reason of the first rejected promise.
@@ -36,7 +36,7 @@ Your task is to implement a function called `promiseAllSettled` that mimics th
 
 **Instructions**
 
-1. Implement a function called `promiseAllSettled` that takes an array of promises as an argument.
+1. Implement a function called **`promiseAllSettled`** that takes an array of promises as an argument.
 2. The function should return a new promise that resolves with an array of objects representing the settlement of each promise in the input array.
 3. Each object in the resolved array should have properties `status` and `value` or `reason`. The `status` can be either `'fulfilled'` or `'rejected'`, and `value` should hold the resolved value (if fulfilled) or `reason` should hold the rejection reason (if rejected).
 
@@ -62,7 +62,7 @@ Your task is to implement a function called `chainPromises` that facilitates c
 
 **Instructions**
 
-1. Implement a function called `chainPromises` that takes an array of functions as an argument.
+1. Implement a function called **`chainPromises`** that takes an array of functions as an argument.
 2. Each function in the array should return a promise.
 3. The `chainPromises` function should execute the functions sequentially, chaining the promises together.
 4. The returned promise should resolve with the value of the last resolved promise or reject with the reason of the first rejected promise.
@@ -91,5 +91,39 @@ chainPromises(functionsArray)
   })
   .catch(error => {
     console.error("Chained promise error:", error);
+  });
+```
+
+### **Task 4: Implement `promisify` Function**
+
+Your task is to implement a function called `promisify` that converts a callback-style function into a function that returns a promise.
+
+**Instructions**
+
+1. Implement a function called **`promisify`** that takes a callback-style function as an argument.
+2. The `promisify` function should return a new function that returns a promise.
+3. The new function should execute the original callback-style function and resolve the promise with its result or reject the promise with any error encountered.
+
+**Example**
+
+```js
+function callbackStyleFunction(value, callback) {
+  setTimeout(() => {
+    if (value > 0) {
+      callback(null, value * 2);
+    } else {
+      callback("Invalid value", null);
+    }
+  }, 1000);
+}
+
+const promisedFunction = promisify(callbackStyleFunction);
+
+promisedFunction(3)
+  .then(result => {
+    console.log("Promised function result:", result); // Expected: 6
+  })
+  .catch(error => {
+    console.error("Promised function error:", error);
   });
 ```
