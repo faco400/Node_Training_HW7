@@ -7,7 +7,7 @@ function promiseAllSettled(arrayPromises) {
       element.then(result =>{
         results[index] = {status: 'fulfilled', value: result};
       }).catch(error => {
-        results[index] = {status: 'fulfilled', value: error};
+        results[index] = {status: 'rejected', reason: error};
       }).finally(() => {
         settledPromises++;
         if(settledPromises === arrayPromises.length)
